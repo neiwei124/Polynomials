@@ -15,6 +15,7 @@ public class PolynomialGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        resultOutput1 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         drawingPanel = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -29,11 +30,17 @@ public class PolynomialGUI extends javax.swing.JFrame {
         otherInput = new javax.swing.JTextField();
         resultButton = new javax.swing.JButton();
         resultOutput = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        operationLabel = new javax.swing.JLabel();
+        displayPolynomial = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        graphButton1 = new javax.swing.JButton();
+        inverseButton = new javax.swing.JButton();
+
+        resultOutput1.setFont(new java.awt.Font("Myriad Web Pro Condensed", 0, 14)); // NOI18N
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Garamond", 1, 36)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Myriad Web Pro Condensed", 1, 36)); // NOI18N
         jLabel1.setText("Sick Polynomial Software");
 
         drawingPanel.setBackground(new java.awt.Color(255, 255, 255));
@@ -49,8 +56,12 @@ public class PolynomialGUI extends javax.swing.JFrame {
             .add(0, 400, Short.MAX_VALUE)
         );
 
-        jLabel2.setText("Enter a polynomial here (Use ^ for exponents):");
+        jLabel2.setFont(new java.awt.Font("Myriad Web Pro Condensed", 1, 18)); // NOI18N
+        jLabel2.setText("Enter a polynomial here:");
 
+        polynomialInput.setFont(new java.awt.Font("Myriad Web Pro Condensed", 0, 14)); // NOI18N
+
+        subtractButton.setFont(new java.awt.Font("Myriad Web Pro Condensed", 0, 12)); // NOI18N
         subtractButton.setText("Subtract");
         subtractButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -58,6 +69,7 @@ public class PolynomialGUI extends javax.swing.JFrame {
             }
         });
 
+        addButton.setFont(new java.awt.Font("Myriad Web Pro Condensed", 0, 12)); // NOI18N
         addButton.setText("Add");
         addButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -65,6 +77,7 @@ public class PolynomialGUI extends javax.swing.JFrame {
             }
         });
 
+        multiplyButton.setFont(new java.awt.Font("Myriad Web Pro Condensed", 0, 12)); // NOI18N
         multiplyButton.setText("Multiply");
         multiplyButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -72,6 +85,7 @@ public class PolynomialGUI extends javax.swing.JFrame {
             }
         });
 
+        derivativeButton.setFont(new java.awt.Font("Myriad Web Pro Condensed", 0, 12)); // NOI18N
         derivativeButton.setText("Derivative");
         derivativeButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -79,6 +93,7 @@ public class PolynomialGUI extends javax.swing.JFrame {
             }
         });
 
+        divideButton.setFont(new java.awt.Font("Myriad Web Pro Condensed", 0, 12)); // NOI18N
         divideButton.setText("Divide");
         divideButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -86,6 +101,7 @@ public class PolynomialGUI extends javax.swing.JFrame {
             }
         });
 
+        graphButton.setFont(new java.awt.Font("Myriad Web Pro Condensed", 1, 12)); // NOI18N
         graphButton.setText("Graph");
         graphButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -93,6 +109,11 @@ public class PolynomialGUI extends javax.swing.JFrame {
             }
         });
 
+        operatorOutput.setFont(new java.awt.Font("Myriad Web Pro Condensed", 3, 12)); // NOI18N
+
+        otherInput.setFont(new java.awt.Font("Myriad Web Pro Condensed", 0, 12)); // NOI18N
+
+        resultButton.setFont(new java.awt.Font("Myriad Web Pro Condensed", 1, 12)); // NOI18N
         resultButton.setText("Result");
         resultButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -100,56 +121,76 @@ public class PolynomialGUI extends javax.swing.JFrame {
             }
         });
 
-        jLabel3.setText("Operations:");
+        resultOutput.setFont(new java.awt.Font("Myriad Web Pro Condensed", 0, 14)); // NOI18N
+
+        operationLabel.setFont(new java.awt.Font("Myriad Web Pro Condensed", 1, 18)); // NOI18N
+        operationLabel.setText("Operations:");
+
+        displayPolynomial.setFont(new java.awt.Font("Myriad Web Pro Condensed", 0, 14)); // NOI18N
+
+        jLabel4.setFont(new java.awt.Font("Myriad Web Pro Condensed", 0, 11)); // NOI18N
+        jLabel4.setText(" (Use ^ for exponents):");
+
+        graphButton1.setFont(new java.awt.Font("Myriad Web Pro Condensed", 1, 12)); // NOI18N
+        graphButton1.setText("Graph");
+        graphButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                graphButton1ActionPerformed(evt);
+            }
+        });
+
+        inverseButton.setFont(new java.awt.Font("Myriad Web Pro Condensed", 0, 12)); // NOI18N
+        inverseButton.setText("Inverse");
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(layout.createSequentialGroup()
-                .add(40, 40, 40)
+                .add(50, 50, 50)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(layout.createSequentialGroup()
                         .add(jLabel1)
                         .add(0, 0, Short.MAX_VALUE))
                     .add(layout.createSequentialGroup()
                         .add(drawingPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .add(36, 36, 36)
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(jLabel2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 299, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                             .add(layout.createSequentialGroup()
+                                .add(polynomialInput, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 239, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                                .add(graphButton))
+                            .add(operationLabel)
+                            .add(layout.createSequentialGroup()
+                                .add(addButton)
+                                .add(18, 18, 18)
+                                .add(subtractButton)
+                                .add(18, 18, 18)
+                                .add(multiplyButton)
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                                .add(divideButton))
+                            .add(displayPolynomial, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 239, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                            .add(jLabel4)
+                            .add(layout.createSequentialGroup()
+                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
+                                    .add(layout.createSequentialGroup()
+                                        .add(derivativeButton)
+                                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                                        .add(resultOutput, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .add(org.jdesktop.layout.GroupLayout.LEADING, layout.createSequentialGroup()
+                                        .add(operatorOutput, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 70, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                        .add(otherInput, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 310, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
                                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                                     .add(layout.createSequentialGroup()
-                                        .add(jLabel2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 299, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                        .add(polynomialInput, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 239, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                                        .add(graphButton)
-                                        .addContainerGap(12, Short.MAX_VALUE))
+                                        .add(12, 12, 12)
+                                        .add(resultButton))
                                     .add(layout.createSequentialGroup()
-                                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                                            .add(layout.createSequentialGroup()
-                                                .add(operatorOutput, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 150, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                                                .add(otherInput, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 310, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                                .add(18, 18, 18)
-                                                .add(resultButton))
-                                            .add(layout.createSequentialGroup()
-                                                .add(jLabel3)
-                                                .add(18, 18, 18)
-                                                .add(addButton)
-                                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                                                .add(subtractButton)
-                                                .add(18, 18, 18)
-                                                .add(multiplyButton)
-                                                .add(33, 33, 33)
-                                                .add(divideButton)
-                                                .add(18, 18, 18)
-                                                .add(derivativeButton)))
-                                        .add(0, 0, Short.MAX_VALUE))))
-                            .add(layout.createSequentialGroup()
-                                .add(107, 107, 107)
-                                .add(resultOutput, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 413, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                .add(0, 0, Short.MAX_VALUE))))))
+                                        .add(12, 12, 12)
+                                        .add(graphButton1))))
+                            .add(inverseButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 81, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(44, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -158,29 +199,41 @@ public class PolynomialGUI extends javax.swing.JFrame {
                 .add(jLabel1)
                 .add(36, 36, 36)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(drawingPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(layout.createSequentialGroup()
-                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                            .add(jLabel2)
-                            .add(polynomialInput, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .add(graphButton))
-                        .add(18, 18, 18)
-                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                            .add(subtractButton)
-                            .add(derivativeButton)
-                            .add(divideButton)
-                            .add(multiplyButton)
-                            .add(addButton)
-                            .add(jLabel3))
-                        .add(18, 18, 18)
-                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(operatorOutput, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 23, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                                .add(otherInput, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                .add(resultButton)))
-                        .add(18, 18, 18)
-                        .add(resultOutput, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 25, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                    .add(drawingPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(9, Short.MAX_VALUE))
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                            .add(graphButton1)
+                            .add(layout.createSequentialGroup()
+                                .add(jLabel2)
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                .add(jLabel4)
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                                    .add(polynomialInput, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                    .add(graphButton))
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                .add(displayPolynomial, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 25, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                .add(20, 20, 20)
+                                .add(operationLabel)
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                                    .add(addButton)
+                                    .add(subtractButton)
+                                    .add(multiplyButton)
+                                    .add(divideButton))
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                                    .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                                        .add(resultButton)
+                                        .add(otherInput, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                                    .add(operatorOutput, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 23, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                                .add(71, 71, 71)
+                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                                    .add(derivativeButton)
+                                    .add(resultOutput, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 25, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                        .add(inverseButton)))
+                .addContainerGap(53, Short.MAX_VALUE))
         );
 
         pack();
@@ -192,6 +245,7 @@ public class PolynomialGUI extends javax.swing.JFrame {
         g.drawOval(100, 100, 30, 30);
         g.drawOval(300, 100, 30, 30);
         g.drawLine(100, 300, 300, 300);
+        displayPolynomial.setText("Simplified polynomial");
         
     }//GEN-LAST:event_graphButtonActionPerformed
 
@@ -227,6 +281,12 @@ public class PolynomialGUI extends javax.swing.JFrame {
         resultOutput.setText("The derivative of this polynomial is [insert derivative here]");
     }//GEN-LAST:event_derivativeButtonActionPerformed
 
+    private void graphButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_graphButton1ActionPerformed
+        Graphics g = drawingPanel.getGraphics();
+        g.setColor(Color.red);
+        g.drawLine(10, 10, 400, 400);
+    }//GEN-LAST:event_graphButton1ActionPerformed
+
     
     public static void main(String args[]) {
         
@@ -240,18 +300,23 @@ public class PolynomialGUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addButton;
     private javax.swing.JButton derivativeButton;
+    private javax.swing.JLabel displayPolynomial;
     private javax.swing.JButton divideButton;
     private javax.swing.JPanel drawingPanel;
     private javax.swing.JButton graphButton;
+    private javax.swing.JButton graphButton1;
+    private javax.swing.JButton inverseButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JButton multiplyButton;
+    private javax.swing.JLabel operationLabel;
     private javax.swing.JLabel operatorOutput;
     private javax.swing.JTextField otherInput;
     private javax.swing.JTextField polynomialInput;
     private javax.swing.JButton resultButton;
     private javax.swing.JLabel resultOutput;
+    private javax.swing.JLabel resultOutput1;
     private javax.swing.JButton subtractButton;
     // End of variables declaration//GEN-END:variables
 }
