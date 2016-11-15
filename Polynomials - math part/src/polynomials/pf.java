@@ -17,45 +17,56 @@ public class pf {
     }
     
     public pf(String equation){ // for user inputs
+        equation = equation.replaceAll("\\-+", "+-");
         String[] components = equation.split("\\+");
         
-        int a, b;
-        if (components[0].indexOf("-")!=-1){
-            String[] components2 = components[0].split("\\-");
-            String[] terms1 = components2[0].split("\\^");
-            a = Integer.parseInt(terms1[0].substring(0, 1));
-            b = Integer.parseInt(terms1[1]);
-        }
-        else{
-            String[] terms1 = components[0].split("\\^");
-            a = Integer.parseInt(terms1[0].substring(0, 1));
-            b = Integer.parseInt(terms1[1]);
-        }
-        
-        this.coef = new int[b+1];
-        this.coef[b] = a;
-        this.deg = getDegree();
-        
+        int[] a = new int[components.length];
+        int[] b = new int[components.length];
         for (int i = 0; i < components.length; i++) {
-            if (components[i].indexOf("x")!=-1){
-                if(components[i].indexOf("-")!=-1){
-                    String[] components2 = components[i].split("\\-");
-                    for (int j = 0; j < components2.length; j++) {
-                        String[] parts = components2[i].split("\\^");
-                        int a_1 = Integer.parseInt(parts[0].substring(0, 1));
-                        int b_1 = Integer.parseInt(parts[1]);
-                        this.add(new pf(a_1, b_1));
-                    }
-                }
-                else{
-                    String[] parts = components[i].split("\\^");
-                    this.add(new pf(Integer.parseInt(parts[0].substring(0, 1)), Integer.parseInt(parts[1])));
-                }
+            if ((components[i].contains("x"))){
+                String[] parts = components[i].split("\\^");
+                    int a_1 = Integer.parseInt(parts[0].substring(0, parts[0].length()-1));
+                    int b_1 = Integer.parseInt(parts[1]);
+                    a[i] = a_1;
+                    b[i]= b_1;
             }
             else{
-                this.add(new pf(Integer.parseInt(components[i]), 0));
-            }
+                int a_1 = Integer.parseInt(components[i]);
+                a[i] = a_1;
+                b[i] = 0;
+            }            
         }
+        
+        int x_1 = 0;
+        for (int i = 0; i < b.length; i++) {
+            x_1 = getBiggestVal(b);            
+        }
+        
+        this.coef = new int[x_1+1];
+        
+        for (int i = 0; i < b.length; i++) {
+            this.coef[b[i]] += a[i];
+        }
+
+        this.deg = getDegree();
+        
+    }
+    
+    public int getBiggestVal(int[] a){
+        int a_1 = 0;
+        for (int i = 0; i < a.length; i++) {
+            a_1 = Math.max(a_1, a[i]);            
+        }
+        return a_1;
+    }
+    
+    public int getIndexOf(int[] a, int b){
+        int x = 0;
+        for (int i = 0; i < a.length; i++) {
+            if(a[i]==b);
+            x = b;
+        }
+        return x;
     }
     
     public int getDegree(){
@@ -143,10 +154,14 @@ public class pf {
     
     public void print(){
         String result = "y=";
-        for (int i = 0; i < this.deg; i++) {
-            String exponent = "*x^" + Integer.toString(this.deg - i);
+        for (int i = 0; i <= this.deg; i++) {
+            String exponent = "x^" + Integer.toString(this.deg - i);
             if (this.deg - i == 0)exponent = "";
-            result += Integer.toBinaryString(this.coef[deg-i]) + exponent;            
+            if (this.coef[deg-i]==0)exponent = "";
+            String co_ef = Integer.toString(this.coef[deg-i]);
+            if (this.coef[deg-i]>0 && deg-i < deg)co_ef = "+"+co_ef;
+            if (co_ef.equals("0"))co_ef = "";
+            result += co_ef + exponent;            
         }
         System.out.println(result);
     }
