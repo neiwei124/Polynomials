@@ -8,11 +8,15 @@ public class PolynomialGUI extends javax.swing.JFrame {
     static String operatorMessage;
     static String operator;
     int xMin = -10, xMax = 10, yMin = -10, yMax = 10;
-    int gSize; 
+    int gSize;
+    pf p1, p2;
+    pf derivative;
+    Color[] c = {Color.black, Color.green, Color.blue, Color.magenta, Color.orange};
+    int switchColor = 0;
     
     public PolynomialGUI() {
         initComponents();
-        getContentPane().setBackground(Color.red);
+        //getContentPane().setBackground(Color.white);
     }
 
     @SuppressWarnings("unchecked")
@@ -52,6 +56,7 @@ public class PolynomialGUI extends javax.swing.JFrame {
         appTitle.setText("Polynomial Software");
 
         drawingPanel.setBackground(new java.awt.Color(255, 255, 255));
+        drawingPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         org.jdesktop.layout.GroupLayout drawingPanelLayout = new org.jdesktop.layout.GroupLayout(drawingPanel);
         drawingPanel.setLayout(drawingPanelLayout);
@@ -229,11 +234,9 @@ public class PolynomialGUI extends javax.swing.JFrame {
                                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                                 .add(divideButton)
                                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                .add(compositionButton)))
-                        .addContainerGap(30, Short.MAX_VALUE))
-                    .add(layout.createSequentialGroup()
-                        .add(appTitle)
-                        .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .add(compositionButton))))
+                    .add(appTitle))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -270,7 +273,7 @@ public class PolynomialGUI extends javax.swing.JFrame {
                             .add(operatorOutput, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 23, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(operationOutput, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 33, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 104, Short.MAX_VALUE)
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                             .add(org.jdesktop.layout.GroupLayout.TRAILING, derivativeGraph)
                             .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -281,7 +284,7 @@ public class PolynomialGUI extends javax.swing.JFrame {
                             .add(inverseButton)
                             .add(inverseOutput, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 25, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                             .add(inverseGraph))))
-                .addContainerGap(53, Short.MAX_VALUE))
+                .addContainerGap(50, Short.MAX_VALUE))
         );
 
         pack();
@@ -289,7 +292,7 @@ public class PolynomialGUI extends javax.swing.JFrame {
 
     //graphs original polynomial
     private void graphButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_graphButtonActionPerformed
-        pf p1 = new pf(polynomialInput.getText());
+        p1 = new pf(polynomialInput.getText());
         graph(p1);
         
     }//GEN-LAST:event_graphButtonActionPerformed
@@ -313,7 +316,6 @@ public class PolynomialGUI extends javax.swing.JFrame {
     public void graph(pf p){
         gSize = drawingPanel.getHeight();
         Graphics g = drawingPanel.getGraphics();
-        
 
         double x, y, fx = 0;
 
@@ -323,7 +325,7 @@ public class PolynomialGUI extends javax.swing.JFrame {
         g.drawLine(drawX(0), drawY(yMin), drawX(0), drawY(yMax));
 
         //draw the graph
-        g.setColor(Color.black);
+        g.setColor(c[switchColor%c.length]);
         int xPos = 0, yPos = 0, oldX = 0, oldY = 0;
         
         for (x = xMin; x <= xMax; x += 0.0005) {
@@ -337,6 +339,7 @@ public class PolynomialGUI extends javax.swing.JFrame {
             oldY = yPos;
 
         }
+        switchColor++;
         
     }
     
@@ -370,7 +373,7 @@ public class PolynomialGUI extends javax.swing.JFrame {
 
     //gets result from operations
     private void resultButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resultButtonActionPerformed
-        pf p1 = new pf(polynomialInput.getText()), p2 = new pf(otherInput.getText());
+        p2 = new pf(otherInput.getText());
         pf result;
         //ummm i want to display an algebraic form of division but all it has is get numerical value on the rational function class..
         //so this only goes to multiply :(
@@ -391,14 +394,15 @@ public class PolynomialGUI extends javax.swing.JFrame {
 
     //get derivative
     private void derivativeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_derivativeButtonActionPerformed
-        derivativeOutput.setText("The derivative of this polynomial is [insert derivative here]");
+        derivative = p1.differentiate();
+        derivativeOutput.setText("The derivative of this polynomial is " + derivative.print());
     }//GEN-LAST:event_derivativeButtonActionPerformed
 
     //graphs derivative
     private void derivativeGraphActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_derivativeGraphActionPerformed
         Graphics g = drawingPanel.getGraphics();
         g.setColor(Color.red);
-        g.drawLine(10, 10, 400, 400);
+        graph(derivative);
     }//GEN-LAST:event_derivativeGraphActionPerformed
 
     //graphs inverse

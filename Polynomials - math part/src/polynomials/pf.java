@@ -13,7 +13,7 @@ public class pf {
         */
         this.coef = new int[b+1];
         this.coef[b] = a;
-        this.deg = getDegree();
+        this.deg = b;
     }
     
     public pf(String equation){ // for user inputs
@@ -89,9 +89,9 @@ public class pf {
     public pf add(pf other){ // this polynomial plus the other polynomial
         pf result = new pf(0, Math.max(this.deg, other.deg));
         
-        for (int i = 0; i < this.deg; i++) 
+        for (int i = 0; i <= this.deg; i++) 
             result.coef[i] += this.coef[i];
-        for (int i = 0; i < other.deg; i++) 
+        for (int i = 0; i <= other.deg; i++) 
             result.coef[i] += other.coef[i];
         
         result.deg = result.getDegree();
@@ -101,9 +101,9 @@ public class pf {
     public pf subtract(pf other){ // this polynomial minus the other polynomial
         pf result = new pf(0, Math.max(this.deg, other.deg));
         
-        for (int i = 0; i < this.deg; i++) 
+        for (int i = 0; i <= this.deg; i++) 
             result.coef[i] += this.coef[i];
-        for (int i = 0; i < other.deg; i++) 
+        for (int i = 0; i <= other.deg; i++) 
             result.coef[i] -= other.coef[i];
         
         result.deg = result.getDegree();
@@ -112,8 +112,8 @@ public class pf {
     
     public pf multiply(pf other){ // this polynomial multiply the other polynomial
         pf result = new pf(0, this.deg + other.deg);
-        for (int i = 0; i < this.deg; i++) {
-            for (int j = 0; j < other.deg; j++) {
+        for (int i = 0; i <= this.deg; i++) {
+            for (int j = 0; j <= other.deg; j++) {
                 result.coef[i+j] += this.coef[i] * other.coef[j];
             }
         }
@@ -123,7 +123,7 @@ public class pf {
     
     public pf constantMultiplication(int x){
         pf result = this;
-        for (int i = 0; i < this.deg; i++) {
+        for (int i = 0; i <= this.deg; i++) {
             result.coef[i] *= x;            
         }
         return result;
@@ -136,7 +136,7 @@ public class pf {
     
     public pf composition(pf other){ //a(b(x))
         pf result = new pf(0, 0);
-        for (int i = 0; i < this.deg; i++) {
+        for (int i = 0; i <= this.deg; i++) {
             result = result.add(other.constantMultiplication(this.coef[i]));            
         }
         return result;
@@ -145,10 +145,10 @@ public class pf {
     public pf differentiate(){
         if (this.deg == 0)return new pf(0, 0);
         pf result = new pf(0, this.deg -1);
-//        result.deg = this.deg - 1;
-        for (int i = 0; i < result.deg; i++) {
+        for (int i = 0; i <= result.deg; i++) {
             result.coef[i] = (i+1)*this.coef[i+1];
         }
+        result.deg = result.getDegree();
         return result;
     }
     
@@ -168,7 +168,7 @@ public class pf {
     
     //calculates y values for given x -> can be useful for graphing
     public double calculate(double x){
-        int fx = 0;
+        double fx = 0;
         for (int i = 0; i <= this.deg; i++) {
             fx += this.coef[this.deg-i]*Math.pow(x, this.deg-i);
             
