@@ -289,7 +289,6 @@ public class PolynomialGUI extends javax.swing.JFrame {
 
     //graphs original polynomial
     private void graphButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_graphButtonActionPerformed
-        
         pf p1 = new pf(polynomialInput.getText());
         graph(p1);
         
@@ -365,12 +364,29 @@ public class PolynomialGUI extends javax.swing.JFrame {
     //divide
     private void divideButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_divideButtonActionPerformed
         operatorMessage = "Divide";
+        operator = "/";
         operatorOutput.setText(operatorMessage + " by:");
     }//GEN-LAST:event_divideButtonActionPerformed
 
     //gets result from operations
     private void resultButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resultButtonActionPerformed
-        operationOutput.setText("Original polynomial " + operator + " the other polynomial = new polynomial");
+        pf p1 = new pf(polynomialInput.getText()), p2 = new pf(otherInput.getText());
+        pf result;
+        //ummm i want to display an algebraic form of division but all it has is get numerical value on the rational function class..
+        //so this only goes to multiply :(
+        switch (operator) {
+            case "+":
+                result = p1.add(p2);
+                break;
+            case "-":
+                result = p1.subtract(p2);
+                break;
+            default:
+                result = p1.multiply(p2);
+                break;
+        }
+        operationOutput.setText(p1.print() + " " + operator + p2.print() + " = " + result.print());
+        
     }//GEN-LAST:event_resultButtonActionPerformed
 
     //get derivative
