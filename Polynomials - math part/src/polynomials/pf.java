@@ -166,5 +166,16 @@ public class pf {
         System.out.println(result);
     }
     
+    //calculates y values for given x -> can be useful for graphing
+    public double calculate(double x){
+        int fx = 0;
+        for (int i = 0; i <= this.deg; i++) {
+            fx += this.coef[this.deg-i]*Math.pow(x, this.deg-i);
+            
+        }
+        return fx;
+        
+    }
+    
 
 }
