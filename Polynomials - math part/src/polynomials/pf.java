@@ -152,8 +152,8 @@ public class pf {
         return result;
     }
     
-    public void print(){
-        String result = "y=";
+    public String print(){
+        String result = "";
         for (int i = 0; i <= this.deg; i++) {
             String exponent = "x^" + Integer.toString(this.deg - i);
             if (this.deg - i == 0)exponent = "";
@@ -163,7 +163,7 @@ public class pf {
             if (co_ef.equals("0"))co_ef = "";
             result += co_ef + exponent;            
         }
-        System.out.println(result);
+        return result;
     }
     
     //calculates y values for given x -> can be useful for graphing
