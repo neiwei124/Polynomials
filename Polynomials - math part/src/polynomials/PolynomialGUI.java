@@ -53,6 +53,7 @@ public class PolynomialGUI extends javax.swing.JFrame {
         operationOutput = new javax.swing.JLabel();
         compositionButton = new javax.swing.JButton();
         resultGraph = new javax.swing.JButton();
+        jComboBox1 = new javax.swing.JComboBox();
 
         resultOutput1.setFont(new java.awt.Font("Myriad Web Pro Condensed", 0, 14)); // NOI18N
 
@@ -63,6 +64,11 @@ public class PolynomialGUI extends javax.swing.JFrame {
 
         drawingPanel.setBackground(new java.awt.Color(255, 255, 255));
         drawingPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        drawingPanel.addMouseWheelListener(new java.awt.event.MouseWheelListener() {
+            public void mouseWheelMoved(java.awt.event.MouseWheelEvent evt) {
+                drawingPanelMouseWheelMoved(evt);
+            }
+        });
 
         org.jdesktop.layout.GroupLayout drawingPanelLayout = new org.jdesktop.layout.GroupLayout(drawingPanel);
         drawingPanel.setLayout(drawingPanelLayout);
@@ -192,12 +198,15 @@ public class PolynomialGUI extends javax.swing.JFrame {
             }
         });
 
+        resultGraph.setFont(new java.awt.Font("Myriad Web Pro Condensed", 1, 12)); // NOI18N
         resultGraph.setText("Graph");
         resultGraph.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 resultGraphActionPerformed(evt);
             }
         });
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -218,16 +227,6 @@ public class PolynomialGUI extends javax.swing.JFrame {
                             .add(displayPolynomial, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 239, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                             .add(helpText)
                             .add(layout.createSequentialGroup()
-                                .add(addButton)
-                                .add(18, 18, 18)
-                                .add(subtractButton)
-                                .add(18, 18, 18)
-                                .add(multiplyButton)
-                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                                .add(divideButton)
-                                .add(18, 18, 18)
-                                .add(compositionButton))
-                            .add(layout.createSequentialGroup()
                                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
                                     .add(layout.createSequentialGroup()
                                         .add(operatorOutput, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 86, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
@@ -241,14 +240,27 @@ public class PolynomialGUI extends javax.swing.JFrame {
                                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
                                             .add(derivativeOutput, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 295, Short.MAX_VALUE)
                                             .add(inverseOutput, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                                    .add(operationOutput, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .add(layout.createSequentialGroup()
+                                        .add(jComboBox1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                        .add(operationOutput, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                                     .add(resultGraph, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 69, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                    .add(resultButton)
                                     .add(derivativeGraph)
-                                    .add(inverseGraph))
-                                .add(50, 50, 50))))
+                                    .add(inverseGraph)
+                                    .add(resultButton))
+                                .add(50, 50, 50))
+                            .add(layout.createSequentialGroup()
+                                .add(addButton)
+                                .add(18, 18, 18)
+                                .add(subtractButton)
+                                .add(18, 18, 18)
+                                .add(multiplyButton)
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                                .add(divideButton)
+                                .add(18, 18, 18)
+                                .add(compositionButton))))
                     .add(layout.createSequentialGroup()
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                             .add(appTitle)
@@ -291,7 +303,9 @@ public class PolynomialGUI extends javax.swing.JFrame {
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                             .add(layout.createSequentialGroup()
-                                .add(operationOutput, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 33, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                                    .add(operationOutput, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 33, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                    .add(jComboBox1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                                 .add(75, 75, 75)
                                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                                     .add(org.jdesktop.layout.GroupLayout.TRAILING, derivativeGraph)
@@ -303,9 +317,7 @@ public class PolynomialGUI extends javax.swing.JFrame {
                                     .add(inverseButton)
                                     .add(inverseOutput, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 25, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                                     .add(inverseGraph)))
-                            .add(layout.createSequentialGroup()
-                                .add(resultGraph)
-                                .add(0, 0, Short.MAX_VALUE)))))
+                            .add(resultGraph))))
                 .addContainerGap(50, Short.MAX_VALUE))
         );
 
@@ -326,6 +338,8 @@ public class PolynomialGUI extends javax.swing.JFrame {
             graph(p1);
             clearGraph = false;
         }
+        
+        displayPolynomial.setText("Your polynomial is " + p1.print());
         
         
     }//GEN-LAST:event_graphButtonActionPerformed
@@ -504,9 +518,27 @@ public class PolynomialGUI extends javax.swing.JFrame {
         
     }//GEN-LAST:event_resultGraphActionPerformed
 
+    private void drawingPanelMouseWheelMoved(java.awt.event.MouseWheelEvent evt) {//GEN-FIRST:event_drawingPanelMouseWheelMoved
+        int scroll = evt.getWheelRotation();
+        //-1 zooms out
+        //1 zooms in
+        if (scroll == -1) {
+            xMin -= 5;
+            xMax += 5;
+            yMin -= 5;
+            yMax += 5;
+        }
+        else {
+            xMin /= 2;
+            xMax /= 2;
+            yMin /= 2;
+            yMax /= 2;
+        }
+    }//GEN-LAST:event_drawingPanelMouseWheelMoved
+
     
     public static void main(String args[]) {
-        
+        PolynomialGUI p = new PolynomialGUI();
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new PolynomialGUI().setVisible(true);
@@ -530,6 +562,7 @@ public class PolynomialGUI extends javax.swing.JFrame {
     private javax.swing.JButton inverseButton;
     private javax.swing.JButton inverseGraph;
     private javax.swing.JLabel inverseOutput;
+    private javax.swing.JComboBox jComboBox1;
     private javax.swing.JButton multiplyButton;
     private javax.swing.JLabel operationLabel;
     private javax.swing.JLabel operationOutput;
