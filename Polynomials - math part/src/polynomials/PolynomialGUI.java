@@ -17,6 +17,11 @@ public class PolynomialGUI extends javax.swing.JFrame {
     boolean clearGraph = true;
     boolean clearDerivativeGraph = true;
     boolean clearResultGraph = true;
+            
+    int axisXMin = xMin;
+    int axisXMax = xMax;
+    int axisYMin = yMin;
+    int axisYMax = yMax;
 
     
     public PolynomialGUI() {
@@ -411,11 +416,21 @@ public class PolynomialGUI extends javax.swing.JFrame {
     public void graphAxis() {
         gSize = drawingPanel.getHeight();
         Graphics g = drawingPanel.getGraphics();
+
         
         //draw the axis lines
         g.setColor(Color.red);
-        g.drawLine(drawX(xMin), drawY(0), drawX(xMax), drawY(0));
-        g.drawLine(drawX(0), drawY(yMin), drawX(0), drawY(yMax));
+        g.drawLine(drawX(axisXMin), drawY(0), drawX(axisXMax), drawY(0));
+        g.drawLine(drawX(0), drawY(axisYMin), drawX(0), drawY(axisYMax));
+        
+        double m = gSize/(axisYMax - axisXMin);
+        for (int i = 0; i < gSize/m; i++) {
+                g.setColor(Color.red);
+                g.drawLine(axisXMin, gSize/2, axisXMin, (gSize/2) + 5);
+                g.drawLine(gSize/2, axisYMin, (gSize/2)+5, axisYMin);
+                axisXMin += m;
+                axisYMin += m;
+        }
 
     }
     public void graph(pf p){
@@ -425,7 +440,8 @@ public class PolynomialGUI extends javax.swing.JFrame {
         double x, y, fx = 0;
 
         //draw the graph
-        g.setColor(c[switchColor%c.length]);
+        //g.setColor(c[switchColor%c.length]);
+        g.setColor(Color.blue);
         int xPos = 0, yPos = 0, oldX = 0, oldY = 0;
         
         for (x = xMin; x <= xMax; x += 0.0005) {
@@ -439,7 +455,7 @@ public class PolynomialGUI extends javax.swing.JFrame {
             oldY = yPos;
 
         }
-        switchColor++;
+        //switchColor++;
         
     }
     
@@ -575,14 +591,22 @@ public class PolynomialGUI extends javax.swing.JFrame {
             xMax += 5;
             yMin -= 5;
             yMax += 5;
+//            axisXMin -= 5;
+//            axisXMax += 5;
+//            axisYMin -= 5;
+//            axisYMax += 5;
         }
         else {
             xMin /= 2;
             xMax /= 2;
             yMin /= 2;
             yMax /= 2;
+//            axisXMin /= 2;
+//            axisXMax /= 2;
+//            axisYMin /= 2;
+//            axisYMax /= 2;
         }
-        
+        graph(p1);
     }//GEN-LAST:event_drawingPanelMouseWheelMoved
 
     private void polynomialInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_polynomialInputActionPerformed
