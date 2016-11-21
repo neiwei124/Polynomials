@@ -4,6 +4,7 @@ package polynomials;
 public class pf {
     int[] coef;
     int deg;
+    double yInt;
     
     public pf(int a, int b){ // a * x^b
         /*
@@ -49,6 +50,7 @@ public class pf {
         }
 
         this.deg = getDegree();
+        this.yInt = this.calculate(0);
         
     }
     
@@ -75,15 +77,6 @@ public class pf {
             if (this.coef[i]!=0)d=i;            
         }
         return d;
-    }
-    
-    public double getValue(double x){
-        double result = 0;
-        for (int i = 0; i < this.deg; i++) {
-            result += this.coef[i]*Math.pow(x, i);            
-        }
-        
-        return result;
     }
     
     public pf add(pf other){ // this polynomial plus the other polynomial
@@ -129,10 +122,10 @@ public class pf {
         return result;
     }
     
-//    public rf divide(pf other){
-//        rf result = new rf(this, other);
-//        return result;
-//    }
+    public pf divide(pf other){ //this needs some work
+       // rf result = new rf(this, other);
+        return new pf("1");
+    }
     
     public pf composition(pf other){ //a(b(x))
         pf result = new pf(0, 0);
