@@ -2,17 +2,17 @@ package polynomials;
 
 
 public class pf {
-    int[] coef;
+    double[] coef;
     int deg;
     double yInt;
     
-    public pf(int a, int b){ // a * x^b
+    public pf(double a, int b){ // a * x^b
         /*
         we made the field constructor this way is because we add the components up together so
         the polynomials will be simplified automatically
         Also this way is a lost easier when calculating
         */
-        this.coef = new int[b+1];
+        this.coef = new double[b+1];
         this.coef[b] = a;
         this.deg = b;
     }
@@ -21,20 +21,32 @@ public class pf {
         equation = equation.replaceAll("\\-+", "+-");
         String[] components = equation.split("\\+");
         
-        int[] a = new int[components.length];
+        double[] a = new double[components.length];
         int[] b = new int[components.length];
+        
         for (int i = 0; i < components.length; i++) {
             if ((components[i].contains("x"))){
                 String[] parts = components[i].split("\\^");
-                    int a_1 = Integer.parseInt(parts[0].substring(0, parts[0].length()-1));
-                    int b_1 = Integer.parseInt(parts[1]);
-                    a[i] = a_1;
-                    b[i]= b_1;
+                double a_1;
+                int b_1;
+                if (parts[0].indexOf("x")!=0 && !parts[0].substring(0, 2).equals("-x"))
+                    a_1 = Double.parseDouble(parts[0].substring(0, parts[0].length()-1));
+                else{
+                    if (parts[0].substring(0, 2).equals("-x")) a_1 = -1;
+                    else
+                        a_1 = 1;
+                }
+                if (parts.length == 1) b_1 = 1;
+                else b_1 = Integer.parseInt(parts[1]);
+                a[i] = a_1;
+                b[i]= b_1;
             }
             else{
-                int a_1 = Integer.parseInt(components[i]);
-                a[i] = a_1;
-                b[i] = 0;
+                if (!components[i].equals("")){
+                    double a_1 = Integer.parseInt(components[i]);
+                    a[i] = a_1;
+                    b[i] = 0;
+                }
             }            
         }
         
@@ -43,7 +55,7 @@ public class pf {
             x_1 = getBiggestVal(b);            
         }
         
-        this.coef = new int[x_1+1];
+        this.coef = new double[x_1+1];
         
         for (int i = 0; i < b.length; i++) {
             this.coef[b[i]] += a[i];
@@ -114,13 +126,7 @@ public class pf {
         return result;
     }
     
-    public pf constantMultiplication(int x){
-        pf result = this;
-        for (int i = 0; i <= this.deg; i++) {
-            result.coef[i] *= x;            
-        }
-        return result;
-    }
+
     
     public pf divide(pf other){ //this needs some work
        // rf result = new rf(this, other);
@@ -130,7 +136,7 @@ public class pf {
     public pf composition(pf other){ //a(b(x))
         pf result = new pf(0, 0);
         for (int i = 0; i <= this.deg; i++) {
-            result = result.add(other.constantMultiplication(this.coef[i]));            
+            result = result.add(other.multiply(new pf(this.coef[i], i)));            
         }
         return result;
     }
@@ -151,7 +157,7 @@ public class pf {
             String exponent = "x^" + Integer.toString(this.deg - i);
             if (this.deg - i == 0)exponent = "";
             if (this.coef[deg-i]==0)exponent = "";
-            String co_ef = Integer.toString(this.coef[deg-i]);
+            String co_ef = Double.toString(this.coef[deg-i]);
             if (this.coef[deg-i]>0 && deg-i < deg)co_ef = "+"+co_ef;
             if (co_ef.equals("0"))co_ef = "";
             result += co_ef + exponent;            

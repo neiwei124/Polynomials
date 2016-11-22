@@ -20,6 +20,11 @@ public class PolynomialGUI extends javax.swing.JFrame {
     boolean clearDerivativeGraph = true;
     boolean clearResultGraph = true;
     boolean graphingInverse = false;
+    
+    int axisXMin = xMin;
+    int axisXMax = xMax;
+    int axisYMin = yMin;
+    int axisYMax = yMax;
 
     
     public PolynomialGUI() {
@@ -164,7 +169,7 @@ public class PolynomialGUI extends javax.swing.JFrame {
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(derivativeOutput, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 295, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                     .add(yIntOutput, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 510, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(70, Short.MAX_VALUE))
+                .addContainerGap(82, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -250,7 +255,7 @@ public class PolynomialGUI extends javax.swing.JFrame {
                                 .add(xTangentInput, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 33, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                                 .add(graphTangentLine)))))
-                .add(0, 219, Short.MAX_VALUE))
+                .add(0, 301, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -268,7 +273,7 @@ public class PolynomialGUI extends javax.swing.JFrame {
                     .add(jLabel1)
                     .add(xTangentInput, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(graphTangentLine))
-                .addContainerGap(106, Short.MAX_VALUE))
+                .addContainerGap(156, Short.MAX_VALUE))
         );
 
         tabbedPanel.addTab("Graphing", jPanel2);
@@ -311,8 +316,8 @@ public class PolynomialGUI extends javax.swing.JFrame {
                         .add(mpOperationSign, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .add(43, 43, 43)
                         .add(otherInput, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 268, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 15, Short.MAX_VALUE)
-                        .add(mpEqualButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 42, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .add(18, 18, 18)
+                        .add(mpEqualButton, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 65, Short.MAX_VALUE)
                         .add(16, 16, 16))
                     .add(jPanel4Layout.createSequentialGroup()
                         .add(mpOutput, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -334,7 +339,7 @@ public class PolynomialGUI extends javax.swing.JFrame {
                         .add(otherInput, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jLabel2)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 49, Short.MAX_VALUE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 95, Short.MAX_VALUE)
                 .add(mpOutput, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 33, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .add(47, 47, 47))
         );
@@ -371,11 +376,11 @@ public class PolynomialGUI extends javax.swing.JFrame {
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                         .add(p2Input, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 213, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(rpEqualButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 40, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                        .add(rpEqualButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 51, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                     .add(jPanel5Layout.createSequentialGroup()
                         .add(218, 218, 218)
                         .add(jLabel3)))
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -390,7 +395,7 @@ public class PolynomialGUI extends javax.swing.JFrame {
                 .add(jLabel3)
                 .add(33, 33, 33)
                 .add(rpOutput, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 49, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(39, Short.MAX_VALUE))
+                .addContainerGap(85, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("2 Random Polynomials", jPanel5);
@@ -469,7 +474,7 @@ public class PolynomialGUI extends javax.swing.JFrame {
                             .add(outputMessage, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 25, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(tabbedPanel)))
-                .add(515, 515, 515))
+                .add(17, 17, 17))
         );
 
         pack();
@@ -483,8 +488,8 @@ public class PolynomialGUI extends javax.swing.JFrame {
             clearGraph = true;
         }
         else if (clearGraph == true) {
-            pfList.add(pMain);
             graphMain.setText("Clear");
+            pfList.add(pMain);
             graph(pMain);
             clearGraph = false;
         }
@@ -514,19 +519,30 @@ public class PolynomialGUI extends javax.swing.JFrame {
         
         //draw the axis lines
         g.setColor(Color.red);
-        g.drawLine(drawX(xMin), drawY(0), drawX(xMax), drawY(0));
-        g.drawLine(drawX(0), drawY(yMin), drawX(0), drawY(yMax));
+        g.drawLine(drawX(axisXMin), drawY(0), drawX(axisXMax), drawY(0));
+        g.drawLine(drawX(0), drawY(axisYMin), drawX(0), drawY(axisYMax));
+         
+        double m = gSize/(axisXMax - axisXMin);
+        for (int i = 0; i < gSize/m; i++) {
+                g.setColor(Color.red);
+                g.drawLine(axisXMin, gSize/2, axisXMin, (gSize/2) + 5);
+                g.drawLine(gSize/2, axisYMin, (gSize/2)+5, axisYMin);
+                axisXMin += m;
+                axisYMin += m;
+         }
 
     }
     public void graph(pf p){
         gSize = drawingPanel.getHeight();
         Graphics g = drawingPanel.getGraphics();
+        
         graphAxis();
 
         double x, y, fx = 0;
 
         //draw the graph
-        g.setColor(c[switchColor%c.length]);
+        //g.setColor(c[switchColor%c.length]);
+        g.setColor(Color.blue);
         int xPos = 0, yPos = 0, oldX = 0, oldY = 0;
         
         for (x = xMin; x <= xMax; x += 0.0005) {
@@ -546,7 +562,7 @@ public class PolynomialGUI extends javax.swing.JFrame {
             oldY = yPos;
 
         }
-        switchColor++;
+        //switchColor++;
         
     }
     
@@ -556,7 +572,9 @@ public class PolynomialGUI extends javax.swing.JFrame {
         g.setColor(Color.white);
         g.fillRect(0, 0, gSize, gSize);
         graphAxis();
+        System.out.println(pfList.size());
         pfList.remove(p);
+        System.out.println(pfList.size());
         for (int i = 0; i < pfList.size(); i++) {
             graph(pfList.get(i));
         }
@@ -625,8 +643,8 @@ public class PolynomialGUI extends javax.swing.JFrame {
             clearDerivativeGraph = true;
         }
         else if (clearDerivativeGraph == true) {
-            pfList.add(derivative);
             derivativeGraph.setText("Clear");
+            pfList.add(derivative);
             graph(derivative);
             clearDerivativeGraph = false;
         }
@@ -660,13 +678,21 @@ public class PolynomialGUI extends javax.swing.JFrame {
             xMax += 5;
             yMin -= 5;
             yMax += 5;
+            axisXMin -= 5;
+            axisYMin -= 5;
         }
         else {
             xMin /= 2;
             xMax /= 2;
             yMin /= 2;
             yMax /= 2;
+            axisXMin /= 5;
+            axisYMin /= 2;
         }
+        
+        graph(pMain);
+        clearGraph(pMain);
+        graph(pMain);
         
     }//GEN-LAST:event_drawingPanelMouseWheelMoved
 

@@ -15,7 +15,7 @@ public class rf {
     public double getValue(double x){
         double result = 0;
         
-        result = this.num.getValue(x)/this.den.getValue(x);
+        result = this.num.calculate(x)/this.den.calculate(x);
         
         return result;
     }
