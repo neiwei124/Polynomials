@@ -159,21 +159,23 @@ public class PolynomialGUI extends javax.swing.JFrame {
             .add(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .add(jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(displayPolynomial, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 300, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(displayPolynomial, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .add(jPanel3Layout.createSequentialGroup()
-                        .add(getValueLabel)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(inputValue, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 23, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(getValue)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(displayValue, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 191, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                    .add(jPanel3Layout.createSequentialGroup()
-                        .add(derivativeButton)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(derivativeOutput, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 295, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                    .add(yIntOutput, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 510, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(41, Short.MAX_VALUE))
+                        .add(jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(jPanel3Layout.createSequentialGroup()
+                                .add(getValueLabel)
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                .add(inputValue, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 23, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                .add(getValue)
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                .add(displayValue, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 191, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                            .add(jPanel3Layout.createSequentialGroup()
+                                .add(derivativeButton)
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                .add(derivativeOutput, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 295, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                            .add(yIntOutput, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 510, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(115, Short.MAX_VALUE))))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -320,7 +322,7 @@ public class PolynomialGUI extends javax.swing.JFrame {
                         .add(18, 18, 18)
                         .add(otherInput, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 268, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .add(18, 18, 18)
-                        .add(mpEqualButton, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .add(mpEqualButton, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 82, Short.MAX_VALUE)
                         .add(67, 67, 67))
                     .add(jPanel4Layout.createSequentialGroup()
                         .add(mpOutput, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -341,7 +343,7 @@ public class PolynomialGUI extends javax.swing.JFrame {
                     .add(mpEqualButton))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jLabel2)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 132, Short.MAX_VALUE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 142, Short.MAX_VALUE)
                 .add(mpOutput, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 33, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .add(47, 47, 47))
         );
@@ -383,7 +385,7 @@ public class PolynomialGUI extends javax.swing.JFrame {
                     .add(jPanel5Layout.createSequentialGroup()
                         .add(193, 193, 193)
                         .add(jLabel3)))
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap(76, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -398,7 +400,7 @@ public class PolynomialGUI extends javax.swing.JFrame {
                 .add(jLabel3)
                 .add(33, 33, 33)
                 .add(rpOutput, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 49, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(123, Short.MAX_VALUE))
+                .addContainerGap(132, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("2 Random Polynomials", jPanel5);
@@ -409,13 +411,13 @@ public class PolynomialGUI extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .add(jTabbedPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 541, Short.MAX_VALUE)
+                .add(jTabbedPane1)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(jPanel1Layout.createSequentialGroup()
-                .add(jTabbedPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 329, Short.MAX_VALUE)
+                .add(jTabbedPane1)
                 .addContainerGap())
         );
 
@@ -516,19 +518,28 @@ public class PolynomialGUI extends javax.swing.JFrame {
         
         //draw the axis lines
         g.setColor(Color.red);
-        g.drawLine(drawX(axisXMin), drawY(0), drawX(axisXMax), drawY(0));
-        g.drawLine(drawX(0), drawY(axisYMin), drawX(0), drawY(axisYMax));
+        g.drawLine(drawX(xMin), drawY(0), drawX(xMax), drawY(0));
+        g.drawLine(drawX(0), drawY(yMin), drawX(0), drawY(yMax));
          
         double m = gSize/(axisXMax - axisXMin);
         for (int i = 0; i < gSize/m; i++) {
-                g.setColor(Color.red);
                 g.drawLine(axisXMin, gSize/2, axisXMin, (gSize/2) + 5);
                 g.drawLine(gSize/2, axisYMin, (gSize/2)+5, axisYMin);
                 axisXMin += m;
                 axisYMin += m;
          }
+        restoreDefaultAxis();
 
     }
+    
+    public void restoreDefaultAxis(){
+        axisXMin = xMin;
+        axisXMax = xMax;
+        axisYMin = yMin;
+        axisYMax = yMax;
+    }
+    
+    
     public void graph(pf p){
         gSize = drawingPanel.getHeight();
         Graphics g = drawingPanel.getGraphics();
@@ -721,7 +732,7 @@ public class PolynomialGUI extends javax.swing.JFrame {
                 tabbedPanel.setVisible(true);
                 yIntOutput.setText("y-int: " + pMain.yInt);
                 outputMessage.setText("Main polynomial initialized.");
-                displayPolynomial.setText("Your polynomial is: " + pMain.print());
+                displayPolynomial.setText("Your polynomial is: y=" + pMain.print());
 
             }
             catch (Exception e){

@@ -18,6 +18,9 @@ public class pf {
     }
     
     public pf(String equation){ // for user inputs
+        if (equation.contains("y=")) {
+            equation = equation.substring(2, equation.length());
+        }
         equation = equation.replaceAll("\\-+", "+-");//Change all the - to +-
         String[] components = equation.split("\\+");//split the equation into terms
         
@@ -158,14 +161,15 @@ public class pf {
     public String print(){ //prints out the polynomial
         String result = "";
         for (int i = 0; i <= this.deg; i++) {
-            String exponent = "x^" + Integer.toString(this.deg - i);
-            if (this.deg - i == 0)exponent = "";
-            if (this.coef[deg-i]==0)exponent = "";
-            if (this.deg - i == 1)exponent = "x";
-            String co_ef = Double.toString(this.coef[deg-i]);
-            if (this.coef[deg-i]>0 && deg-i < deg)co_ef = "+"+co_ef;
-            if (co_ef.equals("0.0") || co_ef.equals("1.0"))co_ef = "";
-            result += co_ef + exponent;            
+            String exponent = "x^" + Integer.toString(this.deg - i);//starts from the end of the array because we filled it from lowest degree to highest
+            if (this.deg - i == 0)exponent = ""; //if exponent is 0 no x^b part
+            if (this.deg - i == 1)exponent = "x"; //if exponent is 1 only print x
+            if (this.coef[deg-i]==0)exponent = ""; //if coefficient is 0 no x^b part
+            String co_ef = Double.toString(this.coef[deg-i]); //get the coefficient
+            if (co_ef.equals("0.0") || co_ef.equals("1.0"))co_ef = ""; //if coeffient is 1 or 0 no a part
+            if (this.coef[deg-i]>0 && deg-i < deg)co_ef = "+"+co_ef; 
+            result += co_ef + exponent;
+            if (result.equals("")) result = "0";
         }
         return result;
     }
