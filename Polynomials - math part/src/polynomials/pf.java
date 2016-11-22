@@ -133,11 +133,29 @@ public class pf {
         return result;
     }
     
-
+    public String divide(pf other){
+        pf d1 = this;
+        pf d2 = other;
+        
+        pf q = new pf(0, 0);
+        pf r = d1;
+        
+        while(r.equZero() == true && r.deg >= d2.deg){
+            pf t = new pf(r.coef[r.deg] / d2.coef[d2.deg], 0);
+            q = q.add(t);
+            r = r.subtract(d2.multiply(t));
+        }
+        
+        String result = "";
+        String remainder =  " + " + r.print() + "/" + d2.print();
+        if (r.equZero() == true) remainder = "";
+        result = q.print() + " + " + remainder;
+        return result;
+    }
     
-    public pf divide(pf other){ //this needs some work *cough* Neien * cough
-       // rf result = new rf(this, other);
-        return new pf("1");
+    public boolean equZero(){
+        if (this.deg == 0 && this.coef[this.deg] ==0) return true;
+        return false;
     }
     
     public pf composition(pf other){ //a(b(x))
@@ -166,7 +184,11 @@ public class pf {
             if (this.deg - i == 1)exponent = "x"; //if exponent is 1 only print x
             if (this.coef[deg-i]==0)exponent = ""; //if coefficient is 0 no x^b part
             String co_ef = Double.toString(this.coef[deg-i]); //get the coefficient
-            if (co_ef.equals("0.0") || co_ef.equals("1.0"))co_ef = ""; //if coeffient is 1 or 0 no a part
+            if (co_ef.equals("0.0"))co_ef = ""; //if coeffient is or 0 no a part
+            if ((co_ef.equals("1.0") || co_ef.equals("-1.0"))&& this.deg-i!=0) {
+                if (co_ef.equals("-1.0")) co_ef = "-";
+                else co_ef = "";
+            }
             if (this.coef[deg-i]>0 && deg-i < deg)co_ef = "+"+co_ef; 
             result += co_ef + exponent;
             if (result.equals("")) result = "0";
