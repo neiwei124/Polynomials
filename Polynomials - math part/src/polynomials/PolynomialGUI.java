@@ -721,6 +721,7 @@ public class PolynomialGUI extends javax.swing.JFrame {
                 tabbedPanel.setVisible(true);
                 yIntOutput.setText("y-int: " + pMain.yInt);
                 outputMessage.setText("Main polynomial initialized.");
+                displayPolynomial.setText("Your polynomial is: " + pMain.print());
 
             }
             catch (Exception e){
@@ -728,7 +729,7 @@ public class PolynomialGUI extends javax.swing.JFrame {
             }  
         }
         
-        displayPolynomial.setText("Your polynomial is: " + pMain.print());
+        
     }//GEN-LAST:event_initializeButtonActionPerformed
 
     private void graphTangentLineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_graphTangentLineActionPerformed
