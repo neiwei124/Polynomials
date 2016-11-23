@@ -153,6 +153,14 @@ public class pf {
         return result;
     }
     
+    public pf exponent(int a){
+        pf result = this;
+        for (int i = 1; i < a; i++) {
+            result = result.multiply(this);
+        }
+        return result; 
+    }
+    
     public boolean equZero(){
         if (this.deg == 0 && this.coef[this.deg] ==0) return true;
         return false;
@@ -160,9 +168,11 @@ public class pf {
     
     public pf composition(pf other){ //a(b(x))
         pf result = new pf(0, 0);
+        System.out.println(this.print() + "\t" + other.print());
         for (int i = 0; i <= this.deg; i++) {
-            result = result.add(other.multiply(new pf(this.coef[i], i)));            
+            result = result.add(other.exponent(i).multiply(new pf(this.coef[i], 0)));           
         }
+        System.out.println(result.print());
         return result;
     }
     
@@ -203,8 +213,37 @@ public class pf {
             
         }
         return fx;
-        
     }
     
-
+    public String[] getEndBehavior(){
+        String a1 = "As x -> ";
+        String a2 = ", then f(x) -> ";
+        String[] result = new String[2];
+        String negX = "";
+        String posX = "";
+        
+        if (this.deg%2==0){
+            if (this.calculate(-100)<0) {
+                negX += a1 + "-\u221e" + a2 + "-\u221e";
+                posX += a1 + "+\u221e" + a2 + "-\u221e";
+            }
+            else {
+                negX += a1 + "-\u221e" + a2 + "+\u221e";
+                posX += a1 + "+\u221e" + a2 + "+\u221e";
+            }
+        }
+        else{
+            if (this.calculate(-100)<0){
+                negX += a1 + "-\u221e" + a2 + "-\u221e";
+                posX += a1 + "-\u221e" + a2 + "+\u221e";
+            } 
+            else {
+                negX += a1 + "-\u221e" + a2 + "+\u221e"; 
+                posX += a1 + "-\u221e" + a2 + "-\u221e";
+            }
+        }
+        result[0] = negX; result[1] = posX;
+        
+        return result;
+    }
 }
