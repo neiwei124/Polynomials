@@ -8,7 +8,7 @@ public class PolynomialGUI extends javax.swing.JFrame {
 
     static String operatorMessage;
     static String operator;
-    int xMin = -10, xMax = 10, yMin = -10, yMax = 10;
+    int xMin, xMax, yMin, yMax;
     int gSize;
     pf pMain;
     pf derivative;
@@ -20,11 +20,12 @@ public class PolynomialGUI extends javax.swing.JFrame {
     boolean clearDerivativeGraph = true;
     boolean clearResultGraph = true;
     boolean graphingInverse = false;
+    boolean clearInverse = true;
     
-    int axisXMin = xMin;
-    int axisXMax = xMax;
-    int axisYMin = yMin;
-    int axisYMax = yMax;
+    int axisXMin;
+    int axisXMax;
+    int axisYMin;
+    int axisYMax;
 
     
     public PolynomialGUI() {
@@ -44,15 +45,6 @@ public class PolynomialGUI extends javax.swing.JFrame {
         outputMessage = new javax.swing.JLabel();
         helpText = new javax.swing.JLabel();
         tabbedPanel = new javax.swing.JTabbedPane();
-        jPanel3 = new javax.swing.JPanel();
-        getValueLabel = new javax.swing.JLabel();
-        inputValue = new javax.swing.JTextField();
-        displayValue = new javax.swing.JLabel();
-        getValue = new javax.swing.JButton();
-        derivativeButton = new javax.swing.JButton();
-        derivativeOutput = new javax.swing.JLabel();
-        yIntOutput = new javax.swing.JLabel();
-        displayPolynomial = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         graphMain = new javax.swing.JButton();
         derivativeGraph = new javax.swing.JButton();
@@ -61,6 +53,18 @@ public class PolynomialGUI extends javax.swing.JFrame {
         xTangentInput = new javax.swing.JTextField();
         graphTangentLine = new javax.swing.JButton();
         compositionButton = new javax.swing.JButton();
+        DRLabel = new javax.swing.JLabel();
+        domain = new javax.swing.JLabel();
+        range = new javax.swing.JLabel();
+        xMinLabel = new javax.swing.JLabel();
+        xMinInput = new javax.swing.JTextField();
+        xMaxLabel = new javax.swing.JLabel();
+        xMaxInput = new javax.swing.JTextField();
+        yMinLabel = new javax.swing.JLabel();
+        yMinInput = new javax.swing.JTextField();
+        yMaxLabel = new javax.swing.JLabel();
+        yMaxInput = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel4 = new javax.swing.JPanel();
@@ -77,6 +81,15 @@ public class PolynomialGUI extends javax.swing.JFrame {
         rpEqualButton = new javax.swing.JButton();
         rpOutput = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        getValueLabel = new javax.swing.JLabel();
+        inputValue = new javax.swing.JTextField();
+        displayValue = new javax.swing.JLabel();
+        getValue = new javax.swing.JButton();
+        derivativeButton = new javax.swing.JButton();
+        derivativeOutput = new javax.swing.JLabel();
+        yIntOutput = new javax.swing.JLabel();
+        displayPolynomial = new javax.swing.JLabel();
         initializeButton = new javax.swing.JButton();
 
         resultOutput1.setFont(new java.awt.Font("Myriad Web Pro Condensed", 0, 14)); // NOI18N
@@ -119,6 +132,317 @@ public class PolynomialGUI extends javax.swing.JFrame {
 
         helpText.setFont(new java.awt.Font("Myriad Web Pro Condensed", 0, 11)); // NOI18N
         helpText.setText(" (No spaces and use ^ for exponents):");
+
+        graphMain.setFont(new java.awt.Font("Myriad Web Pro Condensed", 1, 12)); // NOI18N
+        graphMain.setText("Graph Main Polynomial");
+        graphMain.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                graphMainActionPerformed(evt);
+            }
+        });
+
+        derivativeGraph.setFont(new java.awt.Font("Myriad Web Pro Condensed", 1, 12)); // NOI18N
+        derivativeGraph.setText("Graph Derivative");
+        derivativeGraph.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                derivativeGraphActionPerformed(evt);
+            }
+        });
+
+        inverseGraph.setFont(new java.awt.Font("Myriad Web Pro Condensed", 1, 12)); // NOI18N
+        inverseGraph.setText("Graph Inverse");
+        inverseGraph.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                inverseGraphActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("Graph Tangent Line at x =");
+
+        graphTangentLine.setText("Graph Tangent");
+        graphTangentLine.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                graphTangentLineActionPerformed(evt);
+            }
+        });
+
+        compositionButton.setFont(new java.awt.Font("Myriad Web Pro Condensed", 1, 12)); // NOI18N
+        compositionButton.setText("Composition");
+        compositionButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                compositionButtonActionPerformed(evt);
+            }
+        });
+
+        DRLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        DRLabel.setText("Set Domain and Range");
+
+        domain.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        domain.setText("Domain:");
+
+        range.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        range.setText("Range:");
+
+        xMinLabel.setText("xMin:");
+
+        xMinInput.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                xMinInputActionPerformed(evt);
+            }
+        });
+
+        xMaxLabel.setText("xMax:");
+
+        xMaxInput.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                xMaxInputActionPerformed(evt);
+            }
+        });
+
+        yMinLabel.setText("yMin:");
+
+        yMinInput.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                yMinInputActionPerformed(evt);
+            }
+        });
+
+        yMaxLabel.setText("yMax:");
+
+        yMaxInput.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                yMaxInputActionPerformed(evt);
+            }
+        });
+
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jButton1.setText("Set Domain and Range");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        org.jdesktop.layout.GroupLayout jPanel2Layout = new org.jdesktop.layout.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(jPanel2Layout.createSequentialGroup()
+                .add(24, 24, 24)
+                .add(jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(graphMain)
+                    .add(inverseGraph)
+                    .add(derivativeGraph)
+                    .add(compositionButton)
+                    .add(DRLabel)
+                    .add(jPanel2Layout.createSequentialGroup()
+                        .add(jLabel1)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                        .add(xTangentInput, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 33, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(graphTangentLine))
+                    .add(jPanel2Layout.createSequentialGroup()
+                        .add(jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
+                            .add(range, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .add(domain, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(jPanel2Layout.createSequentialGroup()
+                                .add(xMinLabel)
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                .add(xMinInput, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 21, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                                .add(xMaxLabel)
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                .add(xMaxInput, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 21, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                            .add(jPanel2Layout.createSequentialGroup()
+                                .add(yMinLabel)
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                .add(yMinInput, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 21, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                                .add(yMaxLabel)
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                .add(yMaxInput, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 21, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 15, Short.MAX_VALUE)
+                                .add(jButton1)))))
+                .addContainerGap(241, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel2Layout.createSequentialGroup()
+                .add(19, 19, 19)
+                .add(DRLabel)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(domain)
+                    .add(xMinLabel)
+                    .add(xMinInput, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(xMaxLabel)
+                    .add(xMaxInput, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(range)
+                    .add(yMinLabel)
+                    .add(yMinInput, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(yMaxLabel)
+                    .add(yMaxInput, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(jButton1))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 8, Short.MAX_VALUE)
+                .add(graphMain)
+                .add(21, 21, 21)
+                .add(compositionButton)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(derivativeGraph)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(inverseGraph)
+                .add(18, 18, 18)
+                .add(jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(jLabel1)
+                    .add(xTangentInput, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(graphTangentLine))
+                .add(20, 20, 20))
+        );
+
+        tabbedPanel.addTab("Graphing", jPanel2);
+
+        mpLabel.setFont(new java.awt.Font("Myriad Web Pro Condensed", 3, 14)); // NOI18N
+        mpLabel.setText("Main Polynomial");
+
+        otherInput.setFont(new java.awt.Font("Myriad Web Pro Condensed", 0, 12)); // NOI18N
+        otherInput.setText("1x^2");
+        otherInput.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                otherInputActionPerformed(evt);
+            }
+        });
+
+        mpEqualButton.setFont(new java.awt.Font("Myriad Web Pro Condensed", 1, 12)); // NOI18N
+        mpEqualButton.setText("=");
+        mpEqualButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mpEqualButtonActionPerformed(evt);
+            }
+        });
+
+        mpOutput.setFont(new java.awt.Font("Myriad Web Pro Condensed", 0, 14)); // NOI18N
+
+        mpOperationSign.setText("+");
+
+        jLabel2.setText("(Only +,-,*,/)");
+
+        org.jdesktop.layout.GroupLayout jPanel4Layout = new org.jdesktop.layout.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .add(mpLabel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 134, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(mpOperationSign, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                .add(otherInput, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 268, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .add(18, 18, 18)
+                .add(mpEqualButton, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 79, Short.MAX_VALUE)
+                .add(63, 63, 63))
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .add(mpOutput, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+            .add(jPanel4Layout.createSequentialGroup()
+                .add(122, 122, 122)
+                .add(jLabel2)
+                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(jPanel4Layout.createSequentialGroup()
+                .add(45, 45, 45)
+                .add(jPanel4Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(mpLabel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 23, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(mpOperationSign, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(otherInput, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(mpEqualButton))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(jLabel2)
+                .add(18, 18, 18)
+                .add(mpOutput, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 33, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(113, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("With Main Polynomial", jPanel4);
+
+        p1Input.setText("2x^4+3x^3-4x^2+1");
+
+        rpOperationSign.setText("+");
+
+        p2Input.setText("6x^2+9x^4-8");
+
+        rpEqualButton.setFont(new java.awt.Font("Myriad Web Pro Condensed", 0, 12)); // NOI18N
+        rpEqualButton.setText("=");
+        rpEqualButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rpEqualButtonActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setText("(Only +,-,*,/)");
+
+        org.jdesktop.layout.GroupLayout jPanel5Layout = new org.jdesktop.layout.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(rpOutput, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .add(jPanel5Layout.createSequentialGroup()
+                .add(jPanel5Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(jPanel5Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .add(p1Input, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 196, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                        .add(rpOperationSign, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                        .add(p2Input, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 213, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                        .add(rpEqualButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 51, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(jPanel5Layout.createSequentialGroup()
+                        .add(193, 193, 193)
+                        .add(jLabel3)))
+                .addContainerGap(86, Short.MAX_VALUE))
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(jPanel5Layout.createSequentialGroup()
+                .add(53, 53, 53)
+                .add(jPanel5Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(p1Input, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(rpOperationSign, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(p2Input, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(rpEqualButton))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(jLabel3)
+                .add(33, 33, 33)
+                .add(rpOutput, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 49, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(74, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("2 Random Polynomials", jPanel5);
+
+        org.jdesktop.layout.GroupLayout jPanel1Layout = new org.jdesktop.layout.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .add(jTabbedPane1)
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(jPanel1Layout.createSequentialGroup()
+                .add(jTabbedPane1)
+                .addContainerGap())
+        );
+
+        tabbedPanel.addTab("Operations", jPanel1);
 
         getValueLabel.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         getValueLabel.setText("Find y-value at x=");
@@ -175,7 +499,7 @@ public class PolynomialGUI extends javax.swing.JFrame {
                                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                                 .add(derivativeOutput, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 295, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                             .add(yIntOutput, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 510, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(115, Short.MAX_VALUE))))
+                        .addContainerGap(105, Short.MAX_VALUE))))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -191,236 +515,19 @@ public class PolynomialGUI extends javax.swing.JFrame {
                     .add(jPanel3Layout.createSequentialGroup()
                         .add(displayValue, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 21, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .add(0, 0, Short.MAX_VALUE)))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(derivativeOutput, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 25, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(derivativeButton))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                    .add(jPanel3Layout.createSequentialGroup()
+                        .add(10, 10, 10)
+                        .add(derivativeOutput, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 25, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(derivativeButton)))
+                .add(18, 18, 18)
                 .add(yIntOutput, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 21, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .add(198, 198, 198))
+                .add(343, 343, 343))
         );
 
         tabbedPanel.addTab("Features", jPanel3);
-
-        graphMain.setFont(new java.awt.Font("Myriad Web Pro Condensed", 1, 12)); // NOI18N
-        graphMain.setText("Graph Main Polynomial");
-        graphMain.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                graphMainActionPerformed(evt);
-            }
-        });
-
-        derivativeGraph.setFont(new java.awt.Font("Myriad Web Pro Condensed", 1, 12)); // NOI18N
-        derivativeGraph.setText("Graph Derivative");
-        derivativeGraph.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                derivativeGraphActionPerformed(evt);
-            }
-        });
-
-        inverseGraph.setFont(new java.awt.Font("Myriad Web Pro Condensed", 1, 12)); // NOI18N
-        inverseGraph.setText("Graph Inverse");
-        inverseGraph.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                inverseGraphActionPerformed(evt);
-            }
-        });
-
-        jLabel1.setText("Graph Tangent Line at x =");
-
-        graphTangentLine.setText("Graph Tangent");
-        graphTangentLine.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                graphTangentLineActionPerformed(evt);
-            }
-        });
-
-        compositionButton.setFont(new java.awt.Font("Myriad Web Pro Condensed", 1, 12)); // NOI18N
-        compositionButton.setText("Composition");
-        compositionButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                compositionButtonActionPerformed(evt);
-            }
-        });
-
-        org.jdesktop.layout.GroupLayout jPanel2Layout = new org.jdesktop.layout.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jPanel2Layout.createSequentialGroup()
-                .add(20, 20, 20)
-                .add(jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(graphMain)
-                    .add(inverseGraph)
-                    .add(jPanel2Layout.createSequentialGroup()
-                        .add(jLabel1)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                        .add(xTangentInput, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 33, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(graphTangentLine))
-                    .add(derivativeGraph)
-                    .add(compositionButton))
-                .add(0, 260, Short.MAX_VALUE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jPanel2Layout.createSequentialGroup()
-                .add(19, 19, 19)
-                .add(graphMain)
-                .add(18, 18, 18)
-                .add(compositionButton)
-                .add(18, 18, 18)
-                .add(derivativeGraph)
-                .add(18, 18, 18)
-                .add(inverseGraph)
-                .add(18, 18, 18)
-                .add(jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(jLabel1)
-                    .add(xTangentInput, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(graphTangentLine))
-                .addContainerGap(301, Short.MAX_VALUE))
-        );
-
-        tabbedPanel.addTab("Graphing", jPanel2);
-
-        mpLabel.setFont(new java.awt.Font("Myriad Web Pro Condensed", 3, 14)); // NOI18N
-        mpLabel.setText("Main Polynomial");
-
-        otherInput.setFont(new java.awt.Font("Myriad Web Pro Condensed", 0, 12)); // NOI18N
-        otherInput.setText("1x^2");
-        otherInput.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                otherInputActionPerformed(evt);
-            }
-        });
-
-        mpEqualButton.setFont(new java.awt.Font("Myriad Web Pro Condensed", 1, 12)); // NOI18N
-        mpEqualButton.setText("=");
-        mpEqualButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mpEqualButtonActionPerformed(evt);
-            }
-        });
-
-        mpOutput.setFont(new java.awt.Font("Myriad Web Pro Condensed", 0, 14)); // NOI18N
-
-        mpOperationSign.setText("+");
-
-        jLabel2.setText("(Only +,-,*,/)");
-
-        org.jdesktop.layout.GroupLayout jPanel4Layout = new org.jdesktop.layout.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .add(mpLabel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 107, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                .add(mpOperationSign, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .add(18, 18, 18)
-                .add(otherInput, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 268, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .add(18, 18, 18)
-                .add(mpEqualButton, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 82, Short.MAX_VALUE)
-                .add(67, 67, 67))
-            .add(jPanel4Layout.createSequentialGroup()
-                .add(102, 102, 102)
-                .add(jLabel2)
-                .add(0, 0, Short.MAX_VALUE))
-            .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .add(mpOutput, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jPanel4Layout.createSequentialGroup()
-                .add(45, 45, 45)
-                .add(jPanel4Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(mpLabel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 23, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(mpOperationSign, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(otherInput, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(mpEqualButton))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jLabel2)
-                .add(18, 18, 18)
-                .add(mpOutput, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 33, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(338, Short.MAX_VALUE))
-        );
-
-        jTabbedPane1.addTab("With Main Polynomial", jPanel4);
-
-        p1Input.setText("2x^4+3x^3-4x^2+1");
-
-        rpOperationSign.setText("+");
-
-        p2Input.setText("6x^2+9x^4-8");
-
-        rpEqualButton.setFont(new java.awt.Font("Myriad Web Pro Condensed", 0, 12)); // NOI18N
-        rpEqualButton.setText("=");
-        rpEqualButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rpEqualButtonActionPerformed(evt);
-            }
-        });
-
-        jLabel3.setText("(Only +,-,*,/)");
-
-        org.jdesktop.layout.GroupLayout jPanel5Layout = new org.jdesktop.layout.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(rpOutput, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .add(jPanel5Layout.createSequentialGroup()
-                .add(jPanel5Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(jPanel5Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .add(p1Input, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 196, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                        .add(rpOperationSign, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                        .add(p2Input, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 213, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                        .add(rpEqualButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 51, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                    .add(jPanel5Layout.createSequentialGroup()
-                        .add(193, 193, 193)
-                        .add(jLabel3)))
-                .addContainerGap(76, Short.MAX_VALUE))
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jPanel5Layout.createSequentialGroup()
-                .add(53, 53, 53)
-                .add(jPanel5Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(p1Input, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(rpOperationSign, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(p2Input, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(rpEqualButton))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jLabel3)
-                .add(33, 33, 33)
-                .add(rpOutput, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 49, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(299, Short.MAX_VALUE))
-        );
-
-        jTabbedPane1.addTab("2 Random Polynomials", jPanel5);
-
-        org.jdesktop.layout.GroupLayout jPanel1Layout = new org.jdesktop.layout.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .add(jTabbedPane1)
-                .addContainerGap())
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jPanel1Layout.createSequentialGroup()
-                .add(jTabbedPane1)
-                .addContainerGap())
-        );
-
-        tabbedPanel.addTab("Operations", jPanel1);
 
         initializeButton.setText("Initialize");
         initializeButton.addActionListener(new java.awt.event.ActionListener() {
@@ -439,8 +546,11 @@ public class PolynomialGUI extends javax.swing.JFrame {
                     .add(appTitle)
                     .add(layout.createSequentialGroup()
                         .add(drawingPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .add(58, 58, 58)
-                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
+                        .add(55, 55, 55)
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(layout.createSequentialGroup()
+                                .add(10, 10, 10)
+                                .add(tabbedPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 630, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                             .add(layout.createSequentialGroup()
                                 .add(mainPolynomialInput, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 239, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
@@ -448,8 +558,7 @@ public class PolynomialGUI extends javax.swing.JFrame {
                                 .add(11, 11, 11)
                                 .add(outputMessage, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 239, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                             .add(helpText)
-                            .add(inputPromptLabel)
-                            .add(tabbedPanel))))
+                            .add(inputPromptLabel))))
                 .addContainerGap(24, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -457,8 +566,8 @@ public class PolynomialGUI extends javax.swing.JFrame {
             .add(layout.createSequentialGroup()
                 .add(39, 39, 39)
                 .add(appTitle)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 19, Short.MAX_VALUE)
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 20, Short.MAX_VALUE)
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
                     .add(layout.createSequentialGroup()
                         .add(inputPromptLabel)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
@@ -470,8 +579,8 @@ public class PolynomialGUI extends javax.swing.JFrame {
                                 .add(initializeButton))
                             .add(outputMessage, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 25, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(tabbedPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                    .add(org.jdesktop.layout.GroupLayout.TRAILING, drawingPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                        .add(tabbedPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .add(drawingPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .add(47, 47, 47))
         );
 
@@ -517,13 +626,16 @@ public class PolynomialGUI extends javax.swing.JFrame {
         
         //draw the axis lines
         g.setColor(Color.red);
-        g.drawLine(drawX(xMin), drawY(0), drawX(xMax), drawY(0));
-        g.drawLine(drawX(0), drawY(yMin), drawX(0), drawY(yMax));
+        g.drawLine(drawX(axisXMin), drawY(0), drawX(axisXMax), drawY(0));
+        g.drawLine(drawX(0), drawY(axisYMin), drawX(0), drawY(axisYMax));
          
         double m = gSize/(axisXMax - axisXMin);
+        int incrementX = axisXMin;
+        int incrementY = axisYMin;
         for (int i = 0; i < gSize/m; i++) {
-                g.drawLine(axisXMin, gSize/2, axisXMin, (gSize/2) + 5);
-                g.drawLine(gSize/2, axisYMin, (gSize/2)+5, axisYMin);
+                g.setColor(Color.red);
+                g.drawLine(axisXMin - incrementX, drawY(0) , axisXMin - incrementX, drawY(0) + 5);
+                g.drawLine(drawX(0), axisYMin - incrementY, drawX(0) + 5, axisYMin - incrementY);
                 axisXMin += m;
                 axisYMin += m;
          }
@@ -548,8 +660,8 @@ public class PolynomialGUI extends javax.swing.JFrame {
         double x, y, fx = 0;
 
         //draw the graph
-        //g.setColor(c[switchColor%c.length]);
-        g.setColor(Color.blue);
+        g.setColor(c[switchColor%c.length]);
+        //g.setColor(Color.blue);
         int xPos = 0, yPos = 0, oldX = 0, oldY = 0;
         
         for (x = xMin; x <= xMax; x += 0.0005) {
@@ -569,7 +681,7 @@ public class PolynomialGUI extends javax.swing.JFrame {
             oldY = yPos;
 
         }
-        //switchColor++;
+        switchColor++;
         
     }
     
@@ -584,7 +696,22 @@ public class PolynomialGUI extends javax.swing.JFrame {
         System.out.println(pfList.size());
         for (int i = 0; i < pfList.size(); i++) {
                 graph(pfList.get(i));
-            }  
+            }
+        if (clearInverse == false) {
+            graphingInverse = true;
+            graph(pMain);
+            graphingInverse = false;
+        }
+    }
+    
+    public void clearInverse(){
+        Graphics g = drawingPanel.getGraphics();
+        g.setColor(Color.white);
+        g.fillRect(0, 0, gSize, gSize);
+        graphAxis();
+        for (int i = 0; i < pfList.size(); i++) {
+                graph(pfList.get(i));
+            }
     }
     
     //gets result from operations
@@ -658,9 +785,18 @@ public class PolynomialGUI extends javax.swing.JFrame {
 
     //graphs inverse
     private void inverseGraphActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inverseGraphActionPerformed
-        graphingInverse = true;
-        graph(pMain);
-        graphingInverse = false;
+        if (clearInverse == false) {
+            clearInverse();
+            inverseGraph.setText("Graph Inverse");
+            clearInverse = true;
+        }
+        else if (clearInverse == true) {
+            graphingInverse = true;
+            graph(pMain);
+            graphingInverse = false;
+            inverseGraph.setText("Clear");
+            clearInverse = false;
+        }
     }//GEN-LAST:event_inverseGraphActionPerformed
 
     private void otherInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_otherInputActionPerformed
@@ -766,6 +902,34 @@ public class PolynomialGUI extends javax.swing.JFrame {
         
     }//GEN-LAST:event_rpEqualButtonActionPerformed
 
+    private void xMinInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_xMinInputActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_xMinInputActionPerformed
+
+    private void xMaxInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_xMaxInputActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_xMaxInputActionPerformed
+
+    private void yMinInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_yMinInputActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_yMinInputActionPerformed
+
+    private void yMaxInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_yMaxInputActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_yMaxInputActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        xMin = Integer.parseInt(xMinInput.getText());
+        xMax = Integer.parseInt(xMaxInput.getText());
+        yMin = Integer.parseInt(yMinInput.getText());
+        yMax = Integer.parseInt(yMaxInput.getText());
+        
+        axisXMin = xMin;
+        axisXMax = xMax;
+        axisYMin = yMin;
+        axisYMax = yMax;
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     
     public static void main(String args[]) {
         PolynomialGUI p = new PolynomialGUI();
@@ -778,6 +942,7 @@ public class PolynomialGUI extends javax.swing.JFrame {
         
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel DRLabel;
     private javax.swing.JLabel appTitle;
     private javax.swing.JButton compositionButton;
     private javax.swing.JButton derivativeButton;
@@ -785,6 +950,7 @@ public class PolynomialGUI extends javax.swing.JFrame {
     private javax.swing.JLabel derivativeOutput;
     private javax.swing.JLabel displayPolynomial;
     private javax.swing.JLabel displayValue;
+    private javax.swing.JLabel domain;
     private javax.swing.JPanel drawingPanel;
     private javax.swing.JButton getValue;
     private javax.swing.JLabel getValueLabel;
@@ -795,6 +961,7 @@ public class PolynomialGUI extends javax.swing.JFrame {
     private javax.swing.JLabel inputPromptLabel;
     private javax.swing.JTextField inputValue;
     private javax.swing.JButton inverseGraph;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -813,12 +980,21 @@ public class PolynomialGUI extends javax.swing.JFrame {
     private javax.swing.JLabel outputMessage;
     private javax.swing.JTextField p1Input;
     private javax.swing.JTextField p2Input;
+    private javax.swing.JLabel range;
     private javax.swing.JLabel resultOutput1;
     private javax.swing.JButton rpEqualButton;
     private javax.swing.JTextField rpOperationSign;
     private javax.swing.JLabel rpOutput;
     private javax.swing.JTabbedPane tabbedPanel;
+    private javax.swing.JTextField xMaxInput;
+    private javax.swing.JLabel xMaxLabel;
+    private javax.swing.JTextField xMinInput;
+    private javax.swing.JLabel xMinLabel;
     private javax.swing.JTextField xTangentInput;
     private javax.swing.JLabel yIntOutput;
+    private javax.swing.JTextField yMaxInput;
+    private javax.swing.JLabel yMaxLabel;
+    private javax.swing.JTextField yMinInput;
+    private javax.swing.JLabel yMinLabel;
     // End of variables declaration//GEN-END:variables
 }
